@@ -3,11 +3,13 @@ import importlib.util
 import io
 import json
 from pathlib import Path
+import socket
 import sys
 import tempfile
 import threading
 import time
 import unittest
+from unittest import mock
 import urllib.error
 import urllib.request
 
@@ -229,6 +231,42 @@ class ProtocolTests(unittest.TestCase):
             with self.subTest(payload=payload), self.assertRaises(S.Rejected):
                 S.validate_request(payload, True, ready, 100)
         self.assertIsNone(self.bridge.active)
+
+
+class StartupTests(unittest.TestCase):
+    def test_occupied_port_never_constructs_worker(self):
+        with socket.socket() as occupied:
+            if hasattr(socket, "SO_EXCLUSIVEADDRUSE"):
+                occupied.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+            occupied.bind(("127.0.0.1", 0))
+            occupied.listen(1)
+            port = occupied.getsockname()[1]
+            with mock.patch.object(S, "WorkerBridge") as spawn:
+                with self.assertRaises(OSError):
+                    S.main(["--port", str(port), "--worker", sys.executable, "unused.py"])
+                spawn.assert_not_called()
+
+    def test_worker_popen_failure_releases_bound_listener(self):
+        listeners = []
+        original_gateway = S.Gateway
+
+        def capture_listener(*args, **kwargs):
+            listener = original_gateway(*args, **kwargs)
+            listeners.append(listener)
+            return listener
+
+        with mock.patch.object(S, "Gateway", side_effect=capture_listener), \
+             mock.patch.object(S.subprocess, "Popen", side_effect=OSError("CPU fixture spawn failed")) as spawn:
+            with self.assertRaisesRegex(OSError, "CPU fixture spawn failed"):
+                S.main(["--port", "0", "--worker", sys.executable, "unused.py"])
+        spawn.assert_called_once()
+        self.assertEqual(len(listeners), 1)
+        listener = listeners[0]
+        self.assertIsNone(listener.bridge)
+        self.assertEqual(listener.socket.fileno(), -1)
+        with socket.socket() as replacement:
+            replacement.bind(listener.server_address)
+            replacement.listen(1)
 
 
 class ParserTests(unittest.TestCase):

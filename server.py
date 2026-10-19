@@ -165,6 +165,8 @@ class WorkerBridge:
                             if type(value) not in (int, float) or not math.isfinite(value) or value < 0:
                                 raise RuntimeError("Worker timing is invalid")
                     job.finish(event)
+                    if kind == "done" and not event.get("fatal") and not self.stopping and not self.failure:
+                        self.stage = "ready"
                     if event.get("fatal") is True:
                         self._fail(str(event.get("message", "Fatal worker failure")))
                 else:
@@ -490,16 +492,21 @@ def main(argv=None):
         loopback = False
     if not loopback and len(key) < 16:
         p.error("Non-loopback binding requires an API key of at least16 characters via the configured environment variable")
-    bridge = WorkerBridge(args.worker, max_queue=args.max_queue)
-    httpd = Gateway((args.host, args.port), bridge, api_key=key, request_timeout=args.request_timeout)
-    sys.stderr.write("HTTP listening; /health reports loading until worker ready. Single inference worker.\n")
+    # Reserve the listener before spawning a potentially expensive GPU owner.
+    # No handler is served until the bridge has been attached below.
+    httpd = Gateway((args.host, args.port), None, api_key=key, request_timeout=args.request_timeout)
+    bridge = None
     try:
-        httpd.serve_forever(poll_interval=0.2)
-    except KeyboardInterrupt:
-        pass
+        bridge = WorkerBridge(args.worker, max_queue=args.max_queue)
+        httpd.bridge = bridge
+        sys.stderr.write("HTTP listening; /health reports loading until worker ready. Single inference worker.\n")
+        try:
+            httpd.serve_forever(poll_interval=0.2)
+        except KeyboardInterrupt:
+            pass
     finally:
         httpd.server_close()
-        if not bridge.close():
+        if bridge is not None and not bridge.close():
             sys.stderr.write("Worker has not acknowledged safe retirement; it was not forcibly killed.\n")
     return 0
 
