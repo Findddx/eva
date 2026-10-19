@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "origin": "project-local ds41/attn_cuda.py _SRC",
+  "origin_last_commit": "503741c6a937793440c397aef4731ed29123a3e8",
+  "origin_file_sha256": "4d61ff5745bad3765e5f1851f8fed3aeabfdce9293dab861ea8d554616707a3e",
+  "origin_SRC_literal_sha256": "a44d6465db141b68aff5d6e1631f332ddd0af50f8ff7a7e52aec0a3354f272e4",
+  "origin_device_excerpt_sha256": "df8f0b8d852cf263984baf768573c8b8a7cf3fe384f51876a15fa3fe4fd61936",
+  "excerpt_start_marker": "__device__ __forceinline__ float warp_sum",
+  "excerpt_end_marker": "\\nvoid sparse_decode_cuda(",
+  "parser_newlines": "Python AST string literal normalizes source CRLF to LF",
+  "kernels_header_sha256": "071429fb2b9d7d1beba732f6787c73baa46e6561a58492be914ae5db2e8ab312",
+  "prefix": "// Project-local canonical M1 source; see provenance.json for exact origin/patches.\n#pragma once\n#include <cuda_fp16.h>\n#include <cuda_runtime.h>\n#include <math_constants.h>\n\nnamespace ds41_canonical_sparse512_ns {\n",
+  "suffix": "\n}  // namespace ds41_canonical_sparse512_ns\n",
+  "literal_replacements": [
+    [
+      "__global__ void sparse_decode_kernel(",
+      "__global__ void sparse_decode_queries_kernel("
+    ],
+    [
+      "__global__ void sparse_merge_kernel(",
+      "__global__ void sparse_merge_queries_kernel("
+    ],
+    [
+      "    const int h = blockIdx.x;\n    const int part = blockIdx.y;",
+      "    const long long query = blockIdx.z;\n    q += query * 64 * dim;\n    idx += query * all_topk;\n    out += query * 64 * dim;\n    partial += query * 64 * parts * dim;\n    stats += query * 64 * parts * 2;\n    const int h = blockIdx.x;\n    const int part = blockIdx.y;"
+    ],
+    [
+      "    int h = blockIdx.x;\n    int t = threadIdx.x;",
+      "    const long long query = blockIdx.y;\n    partial += query * 64 * parts * dim;\n    stats += query * 64 * parts * 2;\n    out += query * 64 * dim;\n    int h = blockIdx.x;\n    int t = threadIdx.x;"
+    ]
+  ],
+  "arithmetic_changes": false,
+  "grid_changes": "decode z=query, merge y=query; only integer base-pointer offsets added; original per-query/head/part geometry untouched",
+  "production_files_modified": false,
+  "parent_candidate": {
+    "path": "ds41/canonical_sparse_batch.py",
+    "wrapper_sha256": "6db3c58708762f242776119ab811d293d37dcebae8915a09926eb9fc5be51dd0",
+    "binding_path": "ds41/csrc/canonical_sparse_batch/binding.cu",
+    "binding_sha256": "e20144c6ad2fb4ae03b20b9f0634d729e76148a719fd8c1bd6f0418bb6a4c97d",
+    "kernels_path": "ds41/csrc/canonical_sparse_batch/kernels.cuh",
+    "kernels_sha256": "fa1d74c38a254e51d3fb87cf42828202eb14ddb557760fafd49986b17ccced71",
+    "kernels_LF_sha256": "fa1d74c38a254e51d3fb87cf42828202eb14ddb557760fafd49986b17ccced71",
+    "binding_LF_sha256": "e20144c6ad2fb4ae03b20b9f0634d729e76148a719fd8c1bd6f0418bb6a4c97d"
+  },
+  "standalone_capacity_delta": {
+    "max_queries": 512,
+    "max_keys": 1024,
+    "old_128_256_proof_inherited": false,
+    "namespace_only_float_change": true,
+    "sparse_merge_parts_limit": 16
+  },
+  "binding_literal_replacements": [
+    [
+      "canonical_sparse_batch",
+      "canonical_sparse512"
+    ],
+    [
+      "#define DS41_CANONICAL_MAX_QUERIES 128",
+      "#define DS41_CANONICAL_MAX_QUERIES 512"
+    ],
+    [
+      "DS41_CANONICAL_MAX_QUERIES == 128 || DS41_CANONICAL_MAX_QUERIES == 256",
+      "DS41_CANONICAL_MAX_QUERIES == 512"
+    ],
+    [
+      "Only the original128 or explicitly built256 tier is supported",
+      "Only this independent512 tier is supported"
+    ],
+    [
+      "idx.size(2) <= 640",
+      "idx.size(2) <= 1024"
+    ],
+    [
+      "t.scalar_type() == dtype && t.is_contiguous(),",
+      "t.scalar_type() == dtype && t.is_contiguous()\n                && !t.is_conj() && !t.is_neg() && !t.requires_grad(),"
+    ]
+  ],
+  "additional_prelaunch_inference_guards": true
+}

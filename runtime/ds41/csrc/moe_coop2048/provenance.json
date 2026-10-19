@@ -1,0 +1,154 @@
+{
+  "schema": 1,
+  "upstream": "https://github.com/turboderp-org/exllamav3",
+  "revision": "a3bfbfd0d3c0cea67815146a19fcd2bb3f84709a",
+  "license": "MIT",
+  "license_sha256": "27a32b6263fcd96c79d3beeecf221c4366780bdf15ad51986f48650bd7369bff",
+  "headers": [
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/arch.cuh",
+      "vendored_path": "vendor/arch.cuh",
+      "source_bytes": 1930,
+      "upstream_sha256": "02de42ead5036b863b088ff5eef1e2bc3ff00ef2a78c47b7e3c032641bb62b58",
+      "vendored_sha256": "02de42ead5036b863b088ff5eef1e2bc3ff00ef2a78c47b7e3c032641bb62b58",
+      "modified": false,
+      "parent_candidate_sha256": "02de42ead5036b863b088ff5eef1e2bc3ff00ef2a78c47b7e3c032641bb62b58"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/compat.cuh",
+      "vendored_path": "vendor/compat.cuh",
+      "source_bytes": 642,
+      "upstream_sha256": "dd6038fa6eb8b28df56b184e358e5633421af76eeb40bad4abc522ce6ba54f57",
+      "vendored_sha256": "dd6038fa6eb8b28df56b184e358e5633421af76eeb40bad4abc522ce6ba54f57",
+      "modified": false,
+      "parent_candidate_sha256": "dd6038fa6eb8b28df56b184e358e5633421af76eeb40bad4abc522ce6ba54f57"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/ptx.cuh",
+      "vendored_path": "vendor/ptx.cuh",
+      "source_bytes": 16803,
+      "upstream_sha256": "d78de9b9eb23442ccfa9998b43be67a27eb4f51b0e7d521ac1af66e74e8984df",
+      "vendored_sha256": "d78de9b9eb23442ccfa9998b43be67a27eb4f51b0e7d521ac1af66e74e8984df",
+      "modified": false,
+      "parent_candidate_sha256": "d78de9b9eb23442ccfa9998b43be67a27eb4f51b0e7d521ac1af66e74e8984df"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/ptx_portable.cuh",
+      "vendored_path": "vendor/ptx_portable.cuh",
+      "source_bytes": 2716,
+      "upstream_sha256": "faf499c117d1d1f85059be088b584444329db582268388d88a854d36bb865a71",
+      "vendored_sha256": "faf499c117d1d1f85059be088b584444329db582268388d88a854d36bb865a71",
+      "modified": false,
+      "parent_candidate_sha256": "faf499c117d1d1f85059be088b584444329db582268388d88a854d36bb865a71"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/quant/codebook.cuh",
+      "vendored_path": "vendor/quant/codebook.cuh",
+      "source_bytes": 6009,
+      "upstream_sha256": "de6606f17b5d29d6d998dd2987cc3c8474028c738edfca54c2d2d541d9a9f989",
+      "vendored_sha256": "de6606f17b5d29d6d998dd2987cc3c8474028c738edfca54c2d2d541d9a9f989",
+      "modified": false,
+      "parent_candidate_sha256": "de6606f17b5d29d6d998dd2987cc3c8474028c738edfca54c2d2d541d9a9f989"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/quant/exl3_dq.cuh",
+      "vendored_path": "vendor/quant/exl3_dq.cuh",
+      "source_bytes": 12332,
+      "upstream_sha256": "4e48a37af4811e8e0f7e00e86c29c9c044fa0b6a8f6a685855a033684e4d6552",
+      "vendored_sha256": "4e48a37af4811e8e0f7e00e86c29c9c044fa0b6a8f6a685855a033684e4d6552",
+      "modified": false,
+      "parent_candidate_sha256": "4e48a37af4811e8e0f7e00e86c29c9c044fa0b6a8f6a685855a033684e4d6552"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/quant/exl3_gemv_kernel.cuh",
+      "vendored_path": "vendor/quant/exl3_gemv_kernel.cuh",
+      "source_bytes": 19998,
+      "upstream_sha256": "3de98e1405b29eb7a3d25a47d2c4688e9575cdf31a3e42b1c26f996e37c4eecf",
+      "vendored_sha256": "3de98e1405b29eb7a3d25a47d2c4688e9575cdf31a3e42b1c26f996e37c4eecf",
+      "modified": false,
+      "parent_candidate_sha256": "3de98e1405b29eb7a3d25a47d2c4688e9575cdf31a3e42b1c26f996e37c4eecf"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/quant/exl3_kernel_map.cuh",
+      "vendored_path": "vendor/quant/exl3_kernel_map.cuh",
+      "source_bytes": 13139,
+      "upstream_sha256": "92da1c479a6f6f89bfaf7d038fd54115492c5f9c2be0a23da3ffb7efdde35348",
+      "vendored_sha256": "92da1c479a6f6f89bfaf7d038fd54115492c5f9c2be0a23da3ffb7efdde35348",
+      "modified": false,
+      "parent_candidate_sha256": "92da1c479a6f6f89bfaf7d038fd54115492c5f9c2be0a23da3ffb7efdde35348"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/quant/exl3_moe_coop.cuh",
+      "vendored_path": "vendor/quant/exl3_moe_coop.cuh",
+      "source_bytes": 6814,
+      "upstream_sha256": "eb906f6e0fc45337736a67492cc64dcb8baf5321375c164d4a58d3e3399db9a2",
+      "vendored_sha256": "eb906f6e0fc45337736a67492cc64dcb8baf5321375c164d4a58d3e3399db9a2",
+      "modified": false,
+      "parent_candidate_sha256": "eb906f6e0fc45337736a67492cc64dcb8baf5321375c164d4a58d3e3399db9a2"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/quant/exl3_moe_coop_kernel.cuh",
+      "vendored_path": "vendor/quant/exl3_moe_coop_kernel.cuh",
+      "source_bytes": 37734,
+      "upstream_sha256": "bdd49840d121bc9d298de296f4ed975dd25a7b5c4331363ace0f5fbbda3917ed",
+      "vendored_sha256": "b9a482d66ad4af9cc03a2895a5923519d21525407f2aa8fbe57c5d02d7b32efb",
+      "modified": true,
+      "parent_candidate_sha256": "9c4c87428be2cb2e03e327fe7d90397d00f6ba3cd44c8048104845bcc3c16b4d"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/quant/hadamard_inner.cuh",
+      "vendored_path": "vendor/quant/hadamard_inner.cuh",
+      "source_bytes": 13148,
+      "upstream_sha256": "8d8e437aced88735e919563301ffac0e4a2aac28cc542ed3f738e1216ea0c36b",
+      "vendored_sha256": "8d8e437aced88735e919563301ffac0e4a2aac28cc542ed3f738e1216ea0c36b",
+      "modified": false,
+      "parent_candidate_sha256": "8d8e437aced88735e919563301ffac0e4a2aac28cc542ed3f738e1216ea0c36b"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/rocm/ptx_rocm.cuh",
+      "vendored_path": "vendor/rocm/ptx_rocm.cuh",
+      "source_bytes": 4660,
+      "upstream_sha256": "331670efa14da19b800ab03fa819be8e87f420887be0bc879fc361607209cad0",
+      "vendored_sha256": "331670efa14da19b800ab03fa819be8e87f420887be0bc879fc361607209cad0",
+      "modified": false,
+      "parent_candidate_sha256": "331670efa14da19b800ab03fa819be8e87f420887be0bc879fc361607209cad0"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/util.cuh",
+      "vendored_path": "vendor/util.cuh",
+      "source_bytes": 6032,
+      "upstream_sha256": "a16b8c0c897b96a1e244073bf2e4b66ee9996b7ded4437838332b82a4bd5da80",
+      "vendored_sha256": "a16b8c0c897b96a1e244073bf2e4b66ee9996b7ded4437838332b82a4bd5da80",
+      "modified": false,
+      "parent_candidate_sha256": "a16b8c0c897b96a1e244073bf2e4b66ee9996b7ded4437838332b82a4bd5da80"
+    },
+    {
+      "upstream_path": "exllamav3/exllamav3_ext/util.h",
+      "vendored_path": "vendor/util.h",
+      "source_bytes": 8762,
+      "upstream_sha256": "ba89ac6793bf31cfe123d13baa2e34531a18a24bc3b2ff4add8cf4856b75a1c8",
+      "vendored_sha256": "ba89ac6793bf31cfe123d13baa2e34531a18a24bc3b2ff4add8cf4856b75a1c8",
+      "modified": false,
+      "parent_candidate_sha256": "ba89ac6793bf31cfe123d13baa2e34531a18a24bc3b2ff4add8cf4856b75a1c8"
+    }
+  ],
+  "kernel_changes": [
+    "private namespace exl3_moe_coop_ns -> ds41_moe_coop512_ns",
+    "MAX_SLOTS 256 -> 512",
+    "both build_runs packed keys use expert<<9 instead of expert<<8"
+  ],
+  "unmodified_arithmetic_body": true,
+  "build_tested": false,
+  "GPU_tested": false,
+  "parent_candidate": "ds41/csrc/moe_coop512",
+  "parent_source_sha256": "6646587243cf147f38ae9fb8e64fce494dd6147e9ccfdd77bf071b80be3eefb8",
+  "integer_delta": "Independent checked512-thread O(N^2) prepare for1536 actual slots; original rot build_runs disabled by macro; no floating arithmetic edits",
+  "floating_geometry": {
+    "WK": 16,
+    "WNT": 2,
+    "COLS": 32,
+    "ROWS": 8,
+    "WIDE": 0,
+    "KSPLIT": 1
+  }
+}

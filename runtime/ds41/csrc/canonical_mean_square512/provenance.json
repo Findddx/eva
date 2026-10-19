@@ -1,0 +1,48 @@
+{
+  "kind": "isolated_ATen_M1_square_mean_schedule_reimplementation",
+  "torch_version": "2.14.1+cu130",
+  "torch_git": "5c4886908584029761b579af026dcfb627c84070",
+  "installed_header_sha256": {
+    "ATen/native/cuda/Reduce.cuh": "8f8e3e87f3f7514d85e18515fb21698c780c1b1d1f5b03ef1288a8225c556d97",
+    "ATen/native/cuda/Loops.cuh": "15947845884d7b6d1c1e70b4390088ba36f8f89da2a8e869d2d35b094e435045",
+    "ATen/native/SharedReduceOps.h": "75a6bad9a3c7f47572ab8264fd66487697e2a77bb9fba1b0d555d967aac18b5e",
+    "ATen/native/cuda/block_reduce.cuh": "adc4f18450e43f6f1765a7f2c507c65aa1c881179cb02b47419140fecb38c9ed",
+    "ATen/native/cuda/MemoryAccess.cuh": "cd7aa0c381de1e3404a8f66f33dc632c0b7e1723269385348dbf66b67e35deed"
+  },
+  "primary_source_files": {
+    "aten/src/ATen/native/cuda/Reduce.cuh": "5042ab10a27342625f5e3f469684ab446b9922e8ad16607e9ec673d27623e91c",
+    "aten/src/ATen/native/SharedReduceOps.h": "582740ea0b91a3ef01387fc7aedec801310fd374f8d839419555d762e74be009",
+    "aten/src/ATen/native/cuda/ReduceMomentKernel.cu": "f563fdfc101667cb7d637de622cceea7a8d0e40c29cac8c342c3439db3727f4c",
+    "aten/src/ATen/native/cuda/PowKernel.cu": "51497f62d1abcf9568419bd63290e0d6784f66d6b0dac9e6e9fa643c6edcb9fe"
+  },
+  "upstream_base_url": "https://raw.githubusercontent.com/pytorch/pytorch/5c4886908584029761b579af026dcfb627c84070/",
+  "installed_vs_primary": "Reduce.cuh and SharedReduceOps.h bodies byte-identical after removing only wheel-added stable-ABI pre/post guards",
+  "schedule": "M1 contiguous Float[1,D], vec4, four positive-zero accumulators; ascending accumulator combine; shared half tree then warp offsets16,8,4,2,1; host Float1/D multiply",
+  "excluded": [
+    "RMS eps/rsqrt/weight",
+    "HC pre/post",
+    "Engram HC4-group reductions",
+    "noncontiguous inputs",
+    "graph capture",
+    "production integration"
+  ],
+  "GPU_math_validated": false,
+  "license_of_reference_source": "PyTorch BSD-3-Clause; algorithm schedule reimplementation, not a copied header",
+  "parent_candidate": {
+    "wrapper_path": "ds41/canonical_mean_square.py",
+    "wrapper_sha256": "84bb523a193dae605d290e5ae68a19a9eb4ac682e9277ab03409c0339aa53f2f",
+    "kernel_path": "ds41/csrc/canonical_mean_square/kernel.cuh",
+    "kernel_sha256": "6ac3c0ae0f39b6b3d09c959296e1f172eacd2cb39c2438ea4a9ae1c135e82e2b",
+    "kernel_LF_sha256": "6ac3c0ae0f39b6b3d09c959296e1f172eacd2cb39c2438ea4a9ae1c135e82e2b",
+    "binding_path": "ds41/csrc/canonical_mean_square/binding.cu",
+    "binding_sha256": "3150b221e389bba2b46235dba1aa30799141f6239558a6a0bfd64b3469541158",
+    "binding_LF_sha256": "3150b221e389bba2b46235dba1aa30799141f6239558a6a0bfd64b3469541158"
+  },
+  "kernel_header_sha256": "885273401f652a8f91091d9547bae1c2e89683dfe12e79708a99fd1cdb46c428",
+  "standalone_capacity_delta": {
+    "max_rows": 512,
+    "namespace_only_float_change": true,
+    "old_proof_inherited": false,
+    "production_owner_modified": false
+  }
+}

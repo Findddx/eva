@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "origin": "project-local ds41/attn_cuda.py _SRC rope_tail_kernel",
+  "origin_last_commit": "503741c6a937793440c397aef4731ed29123a3e8",
+  "origin_file_sha256": "4d61ff5745bad3765e5f1851f8fed3aeabfdce9293dab861ea8d554616707a3e",
+  "origin_SRC_literal_sha256": "a44d6465db141b68aff5d6e1631f332ddd0af50f8ff7a7e52aec0a3354f272e4",
+  "origin_device_excerpt_sha256": "729649e194b1623f7aeaffaa764d5bc06312ba6d01eb70351ab340df7b113d67",
+  "excerpt_start_marker": "__global__ void rope_tail_kernel(",
+  "excerpt_end_marker": "\\nvoid rope_tail_cuda(",
+  "parser_newlines": "Python AST string literal normalizes source CRLF to LF",
+  "kernels_header_sha256": "86b4c8f44ee79a885d6f115776e158c7f730328bbfff96bc966b384208c69fa2",
+  "prefix": "// Project-local canonical M1 RoPE; exact source/patches in provenance.json.\n#pragma once\n#include <cuda_fp16.h>\n#include <cuda_runtime.h>\n\nnamespace ds41_canonical_rope512_ns {\n",
+  "suffix": "\n}  // namespace ds41_canonical_rope512_ns\n",
+  "literal_replacements": [
+    [
+      "__global__ void rope_tail_kernel(",
+      "__global__ void rope_tail_queries_kernel("
+    ],
+    [
+      "    int row = blockIdx.x;",
+      "    const long long query = blockIdx.y;\n    x += query * rows * stride;\n    freqs += query * 64;\n    int row = blockIdx.x;"
+    ]
+  ],
+  "arithmetic_changes": false,
+  "grid_changes": "head/row within query on grid.x, query on grid.y; only x/frequency integer base offsets",
+  "production_files_modified": false,
+  "parent_candidate": {
+    "path": "ds41/canonical_rope_batch.py",
+    "wrapper_sha256": "0ec83f82848a1ab0b20a5cefc48e536f686cfa96a76cfbc42bb328f262529204",
+    "binding_path": "ds41/csrc/canonical_rope_batch/binding.cu",
+    "binding_sha256": "1a063d62e24b60308b81d039030296b77c303a114fea9366bed0f080affea5a8",
+    "kernels_path": "ds41/csrc/canonical_rope_batch/kernels.cuh",
+    "kernels_sha256": "c47bb7eb7e97b2e773fd4958cc09587d84ee4d0aaae04256f8c0323f08ec41a9",
+    "kernels_LF_sha256": "c47bb7eb7e97b2e773fd4958cc09587d84ee4d0aaae04256f8c0323f08ec41a9",
+    "binding_LF_sha256": "1a063d62e24b60308b81d039030296b77c303a114fea9366bed0f080affea5a8"
+  },
+  "standalone_capacity_delta": {
+    "max_queries": 512,
+    "max_keys": null,
+    "old_128_256_proof_inherited": false,
+    "namespace_only_float_change": true,
+    "sparse_merge_parts_limit": null
+  },
+  "binding_literal_replacements": [
+    [
+      "canonical_rope_batch",
+      "canonical_rope512"
+    ],
+    [
+      "#define DS41_CANONICAL_MAX_QUERIES 128",
+      "#define DS41_CANONICAL_MAX_QUERIES 512"
+    ],
+    [
+      "DS41_CANONICAL_MAX_QUERIES == 128 || DS41_CANONICAL_MAX_QUERIES == 256",
+      "DS41_CANONICAL_MAX_QUERIES == 512"
+    ],
+    [
+      "Only the original128 or explicitly built256 tier is supported",
+      "Only this independent512 tier is supported"
+    ],
+    [
+      "x.scalar_type() == at::kHalf && x.is_contiguous(), \"canonical_rope512 x dtype/contiguity\"",
+      "x.scalar_type() == at::kHalf && x.is_contiguous() && !x.is_conj() && !x.is_neg()\n                && !x.requires_grad(), \"canonical_rope512 x inference dtype/contiguity/logical-view metadata\""
+    ],
+    [
+      "&& frequencies.scalar_type() == at::kFloat && frequencies.is_contiguous()\n",
+      "&& frequencies.scalar_type() == at::kFloat && frequencies.is_contiguous()\n                && !frequencies.is_conj() && !frequencies.is_neg() && !frequencies.requires_grad()\n"
+    ]
+  ],
+  "additional_prelaunch_inference_guards": true
+}

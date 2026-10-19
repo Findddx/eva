@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "production_integration": false,
+  "files": [
+    {
+      "path": "__init__.py",
+      "bytes": 72,
+      "sha256": "180523b3c3529ac62bd1d690e65d17b56074e0dea19d16799ae1a64f3e916a6e"
+    },
+    {
+      "path": "common.py",
+      "bytes": 4610,
+      "sha256": "557823e759636db589309b7fbad24ca064115a929383b7eb96040b710a96e7eb"
+    },
+    {
+      "path": "csrc/mean/binding.cu",
+      "bytes": 4041,
+      "sha256": "eb79980b3c54d3a6472ff6b5dd10b90b6a7ca9db1b7d94d72591630ab4207166"
+    },
+    {
+      "path": "csrc/mean/kernel.cuh",
+      "bytes": 1693,
+      "sha256": "aeae6ae87e86246e87d3d372bdc2e18acc4c9c07fc07554f5ff42a0eda4997e3"
+    },
+    {
+      "path": "csrc/mean/provenance.json",
+      "bytes": 6515,
+      "sha256": "e128890956cdeb9b82420c953d35c35a794f52b0e252f377bd63a23a0e8985ef"
+    },
+    {
+      "path": "csrc/rope/binding.cu",
+      "bytes": 3277,
+      "sha256": "60912865eec22e29bec14028fdd4c1e46292de4ce203c2dd602309119ecf7f3f"
+    },
+    {
+      "path": "csrc/rope/kernels.cuh",
+      "bytes": 816,
+      "sha256": "107d0cec632cf367868ac57d6bcad90d54ffdb92338ab2f6157e0458cf88b04b"
+    },
+    {
+      "path": "csrc/rope/provenance.json",
+      "bytes": 5536,
+      "sha256": "7a40c534ec7d3c89c1c881a302aceea6d348ccca3e4ad11c5b28e28a6794b96e"
+    },
+    {
+      "path": "csrc/sparse/binding.cu",
+      "bytes": 5064,
+      "sha256": "fa03c7cb32b6aa95e745cde331b4daf11fb1354e216b873fe39ee7b18169fb80"
+    },
+    {
+      "path": "csrc/sparse/kernels.cuh",
+      "bytes": 5400,
+      "sha256": "751c57f9edda7edae644fc0919ebeade22fd80794e6826d760f39e186377c8bd"
+    },
+    {
+      "path": "csrc/sparse/provenance.json",
+      "bytes": 5896,
+      "sha256": "753de7641aaae6636ebe1e355e5fa2b8f102eb458bf8e1024adeb46e36882c26"
+    },
+    {
+      "path": "mean1024.py",
+      "bytes": 8658,
+      "sha256": "41a7b2c0f8329aefbac3b6f1fd018d6b30fbe92b74c12dc90658f3b5f9e7e40e"
+    },
+    {
+      "path": "rope1024.py",
+      "bytes": 7009,
+      "sha256": "6fc8af9d7a01afba16bf9f708ec0aa92d2db69355832cd5acf864d8ba2127c46"
+    },
+    {
+      "path": "sparse1024.py",
+      "bytes": 9209,
+      "sha256": "70eff45c89195a2e7b2659f8705238d777362147da2453c3f959325451502e08"
+    }
+  ]
+}

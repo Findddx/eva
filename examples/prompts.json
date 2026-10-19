@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "scope": "Small prompts for interactive generation, programming, scientific reasoning and code editing.",
+  "cases": [
+    {
+      "name": "square",
+      "prompt": "请只输出 Python 代码，编写函数 square(x)，返回 x * x，不要解释。",
+      "max_tokens": 64,
+      "mode": "greedy"
+    },
+    {
+      "name": "general-code",
+      "prompt": "Write Python code for merge_sorted(a, b), merging two sorted lists without changing either input. Include a short explanation of time complexity.",
+      "max_tokens": 384,
+      "mode": "greedy"
+    },
+    {
+      "name": "science",
+      "prompt": "Explain why subtracting nearly equal floating-point numbers can lose relative precision. Give a small numerical example and a Python implementation of a more stable alternative for computing sqrt(1+x)-1 when x is small.",
+      "max_tokens": 512,
+      "mode": "greedy"
+    },
+    {
+      "name": "prompt-edit",
+      "prompt": "Change only the default retries from 3 to 4 in the following code. Return the entire updated code with no explanation.\n\ndef retry_task(task, retries=3):\n    for attempt in range(retries):\n        try:\n            return task()\n        except RuntimeError:\n            if attempt + 1 == retries:\n                raise\n",
+      "max_tokens": 256,
+      "mode": "lookup"
+    }
+  ]
+}

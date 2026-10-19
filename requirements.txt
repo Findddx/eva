@@ -1,0 +1,4 @@
+numpy>=2.0
+safetensors>=0.5
+tokenizers>=0.20
+ninja>=1.11

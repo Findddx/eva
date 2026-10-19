@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "origin": "project-local ds41/attn_cuda.py _SRC rope_tail_kernel",
+  "origin_last_commit": "503741c6a937793440c397aef4731ed29123a3e8",
+  "origin_file_sha256": "4d61ff5745bad3765e5f1851f8fed3aeabfdce9293dab861ea8d554616707a3e",
+  "origin_SRC_literal_sha256": "a44d6465db141b68aff5d6e1631f332ddd0af50f8ff7a7e52aec0a3354f272e4",
+  "origin_device_excerpt_sha256": "729649e194b1623f7aeaffaa764d5bc06312ba6d01eb70351ab340df7b113d67",
+  "excerpt_start_marker": "__global__ void rope_tail_kernel(",
+  "excerpt_end_marker": "\\nvoid rope_tail_cuda(",
+  "parser_newlines": "Python AST string literal normalizes source CRLF to LF",
+  "kernels_header_sha256": "c47bb7eb7e97b2e773fd4958cc09587d84ee4d0aaae04256f8c0323f08ec41a9",
+  "prefix": "// Project-local canonical M1 RoPE; exact source/patches in provenance.json.\n#pragma once\n#include <cuda_fp16.h>\n#include <cuda_runtime.h>\n\nnamespace ds41_canonical_rope_batch_ns {\n",
+  "suffix": "\n}  // namespace ds41_canonical_rope_batch_ns\n",
+  "literal_replacements": [
+    [
+      "__global__ void rope_tail_kernel(",
+      "__global__ void rope_tail_queries_kernel("
+    ],
+    [
+      "    int row = blockIdx.x;",
+      "    const long long query = blockIdx.y;\n    x += query * rows * stride;\n    freqs += query * 64;\n    int row = blockIdx.x;"
+    ]
+  ],
+  "arithmetic_changes": false,
+  "grid_changes": "head/row within query on grid.x, query on grid.y; only x/frequency integer base offsets",
+  "production_files_modified": false
+}
